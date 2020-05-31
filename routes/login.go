@@ -10,6 +10,7 @@ import (
 	"github.com/Darthsoviet/twitter-go-react/models"
 )
 
+// Login mediante un email si el usuario existe en la BD se devuelve un token
 func Login(w http.ResponseWriter, r *http.Request) {
 	w.Header().Add("Content-Type", "application/json")
 
