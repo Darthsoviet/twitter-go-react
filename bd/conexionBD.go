@@ -14,6 +14,7 @@ var clientOptions = options.Client().ApplyURI("mongodb+srv://root:admin@cluster0
 
 /*ConectarBD es la funcion que genera la conexion*/
 func ConectarBD() *mongo.Client {
+
 	client, err := mongo.Connect(context.TODO(), clientOptions)
 	if err != nil {
 		log.Fatal(err.Error())

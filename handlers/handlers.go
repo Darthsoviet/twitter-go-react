@@ -14,7 +14,9 @@ import (
 //Manejadores seteo mi puerto,handler y pongo a escuchar al servidor
 func Manejadores() {
 	router := mux.NewRouter()
-	router.HandleFunc("/registro", middlew.ChequeoDB(routes.Registro)).Methods("POST")
+	router.HandleFunc("/registro", middlew.ChequeoDB(routes.Registro)).Methods(http.MethodPost)
+	router.HandleFunc("/login", middlew.ChequeoDB(routes.Login)).Methods(http.MethodPost)
+
 	PORT := os.Getenv("PORT")
 
 	if PORT == "" {

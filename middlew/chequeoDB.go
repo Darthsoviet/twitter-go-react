@@ -11,7 +11,7 @@ func ChequeoDB(next http.HandlerFunc) http.HandlerFunc {
 
 	return func(w http.ResponseWriter, r *http.Request) {
 		if bd.ChequeoConnection() == 0 {
-			http.Error(w, "Conexion perdida con la BD", 500)
+			http.Error(w, "Conexion perdida con la BD", http.StatusInternalServerError)
 			return
 		}
 		next.ServeHTTP(w, r)
