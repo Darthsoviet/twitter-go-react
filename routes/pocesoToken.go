@@ -2,7 +2,6 @@ package routes
 
 import (
 	"errors"
-	"strings"
 
 	"github.com/Darthsoviet/twitter-go-react/bd"
 	"github.com/Darthsoviet/twitter-go-react/models"
@@ -21,12 +20,7 @@ func ProcesoToken(tk string) (*models.Claim, bool, string, error) {
 
 	miClave := []byte(util.ObtenerEnv("JWT_CLAVE"))
 	claims := &models.Claim{}
-	splitToken := strings.Split(tk, "Bearer")
-	if len(splitToken) != 2 {
-		return claims, false, string(""), errors.New("formato de token invalido")
-	}
 
-	tk = strings.TrimSpace(splitToken[1])
 	tkn, err := jwt.ParseWithClaims(tk, claims, func(token *jwt.Token) (interface{}, error) {
 		return miClave, nil
 	})
@@ -34,11 +28,13 @@ func ProcesoToken(tk string) (*models.Claim, bool, string, error) {
 		_, encontrado, _ := bd.ChequeoExisteUsuario(claims.Email)
 		if encontrado {
 			Email = claims.Email
-			IDUsuario = claims.Id
+			IDUsuario = claims.ID.Hex()
 		}
 		return claims, encontrado, IDUsuario, nil
+
 	}
 	if !tkn.Valid {
+
 		return claims, false, string(""), errors.New("token invalido")
 	}
 	return claims, false, string(""), err
