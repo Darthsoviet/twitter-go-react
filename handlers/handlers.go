@@ -20,6 +20,14 @@ func Manejadores() {
 	router.HandleFunc("/modificarPerfil", middlew.ChequeoDB(middlew.ValidoJWT(routes.ModificarPerfil))).Methods(http.MethodPut)
 	router.HandleFunc("/tweet", middlew.ChequeoDB(middlew.ValidoJWT(routes.GraboTweet))).Methods(http.MethodPost)
 	router.HandleFunc("/leoTweets", middlew.ChequeoDB(middlew.ValidoJWT(routes.LeoTweets))).Methods(http.MethodGet)
+	router.HandleFunc("/eliminarTweet", middlew.ChequeoDB(middlew.ValidoJWT(routes.EliminoTweet))).Methods(http.MethodDelete)
+	router.HandleFunc("/subirAvatar", middlew.ChequeoDB(middlew.ValidoJWT(routes.SubirAvatar))).Methods(http.MethodPost)
+	router.HandleFunc("/obtenerAvatar", middlew.ChequeoDB(routes.ObtenerAvatar)).Methods(http.MethodGet)
+	router.HandleFunc("/subirBanner", middlew.ChequeoDB(middlew.ValidoJWT(routes.SubirBanner))).Methods(http.MethodPost)
+	router.HandleFunc("/obtenerBanner", middlew.ChequeoDB(routes.ObtenerBanner)).Methods(http.MethodGet)
+	router.HandleFunc("/altaRelacion", middlew.ChequeoDB(middlew.ValidoJWT(routes.AltaRelacion))).Methods(http.MethodPost)
+	router.HandleFunc("/bajaRelacion", middlew.ChequeoDB(middlew.ValidoJWT(routes.BajaRelacion))).Methods(http.MethodDelete)
+
 	PORT := os.Getenv("PORT")
 
 	if PORT == "" {

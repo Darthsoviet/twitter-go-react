@@ -32,8 +32,10 @@ func LeoTweet(ID string, pagina int64) ([]*models.DevuelvoTweets, bool) {
 		if err != nil {
 			return resultados, false
 		}
+
 		resultados = append(resultados, &registro)
 
 	}
+
 	return resultados, true
 }

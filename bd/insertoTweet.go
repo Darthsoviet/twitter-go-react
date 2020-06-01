@@ -14,11 +14,6 @@ func InsertoTweet(t models.GraboTweet) (string, bool, error) {
 	defer cancel()
 	col := MongoCN.Database("twittor").Collection("tweet")
 
-	// registro := bson.M{
-	// 	"userID":  t.UserID,
-	// 	"mensaje": t.Mensaje,
-	// 	"fecha":   t.Fecha,
-	// }
 	result, err := col.InsertOne(ctx, t)
 	if err != nil {
 		return "", false, err
