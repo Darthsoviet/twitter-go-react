@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/Darthsoviet/twitter-go-react/bd"
+	"github.com/Darthsoviet/twitter-go-react/jwt"
 	"github.com/Darthsoviet/twitter-go-react/models"
 )
 
@@ -18,7 +19,7 @@ func ModificarPerfil(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	var status bool
-	status, err = bd.ModificoRegistro(t, IDUsuario)
+	status, err = bd.ModificoRegistro(t, jwt.IDUsuario)
 	if err != nil {
 		http.Error(w, "ocurrio un error al intentar modificar el registro, reintente nuevamente"+err.Error(), http.StatusBadRequest)
 		return

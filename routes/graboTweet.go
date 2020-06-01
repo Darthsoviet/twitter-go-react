@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/Darthsoviet/twitter-go-react/bd"
+	"github.com/Darthsoviet/twitter-go-react/jwt"
 	"github.com/Darthsoviet/twitter-go-react/models"
 )
 
@@ -19,7 +20,7 @@ func GraboTweet(w http.ResponseWriter, r *http.Request) {
 	}
 
 	reg := models.GraboTweet{
-		UserID:  IDUsuario,
+		UserID:  jwt.IDUsuario,
 		Mensaje: mensaje.Mensaje,
 		Fecha:   time.Now(),
 	}
