@@ -19,7 +19,11 @@ func LeoTweet(ID string, pagina int64) ([]*models.DevuelvoTweets, bool) {
 	var resultados []*models.DevuelvoTweets
 
 	condicion := bson.M{"userid": ID}
-	opciones := options.Find().SetLimit(20).SetSort(bson.D{{Key: "fecha", Value: -1}}).SetSkip((pagina - 1) * 20)
+	opciones := options.
+		Find().
+		SetSkip((pagina - 1) * 20).
+		SetLimit(20).
+		SetSort(bson.D{{Key: "fecha", Value: -1}})
 
 	cursor, err := col.Find(ctx, condicion, opciones)
 	if err != nil {
@@ -36,6 +40,6 @@ func LeoTweet(ID string, pagina int64) ([]*models.DevuelvoTweets, bool) {
 		resultados = append(resultados, &registro)
 
 	}
-
+	cursor.Close(ctx)
 	return resultados, true
 }

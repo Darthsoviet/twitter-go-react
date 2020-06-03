@@ -11,6 +11,7 @@ import (
 //BajaRelacion se encarga de comunicarse con la bd y borrar un registro de relacion
 func BajaRelacion(w http.ResponseWriter, r *http.Request) {
 	ID := r.URL.Query().Get("id")
+
 	t := models.Relacion{
 		UsuarioID:         jwt.IDUsuario,
 		UsuarioRelacionID: ID,

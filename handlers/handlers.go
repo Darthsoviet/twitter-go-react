@@ -27,6 +27,9 @@ func Manejadores() {
 	router.HandleFunc("/obtenerBanner", middlew.ChequeoDB(routes.ObtenerBanner)).Methods(http.MethodGet)
 	router.HandleFunc("/altaRelacion", middlew.ChequeoDB(middlew.ValidoJWT(routes.AltaRelacion))).Methods(http.MethodPost)
 	router.HandleFunc("/bajaRelacion", middlew.ChequeoDB(middlew.ValidoJWT(routes.BajaRelacion))).Methods(http.MethodDelete)
+	router.HandleFunc("/consultaRelacion", middlew.ChequeoDB(middlew.ValidoJWT(routes.ConsultaRelacion))).Methods(http.MethodGet)
+	router.HandleFunc("/listaUsuarios", middlew.ChequeoDB(middlew.ValidoJWT(routes.ListaUsuarios))).Methods(http.MethodGet)
+	router.HandleFunc("/leoTweetsSeguidores", middlew.ChequeoDB(middlew.ValidoJWT(routes.LeoTweetsRelacion))).Methods(http.MethodGet)
 
 	PORT := os.Getenv("PORT")
 
